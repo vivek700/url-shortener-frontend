@@ -34,9 +34,9 @@
                 <p>Short url: <a target="_blank" href={form.data?.short_url} class="text-blue-300 hover:underline">
                     {form.data?.short_url}
                 </a>
-                    
+
                     <button class="px-2 group relative "  onmousedown={() => copyText(form?.data.short_url)
-          
+
                 }>
                     <abbr class= "group-active:opacity-0" title="copy to clipboard transition-opacity">
                         <Copy class="w-5 h-5" />
@@ -44,7 +44,7 @@
                     <Check class="absolute top-0 group-active:opacity-100 opacity-0" size={20} />
                 </button>
             </p>
-               
+
                 <p>Original url: <a target="_blank" href={form.data?.original_url} class="text-blue-300 hover:underline">
                     {form.data?.original_url}
                 </a><button class="px-2 group relative" onmousedown={() => copyText(form?.data.original_url)}>
@@ -61,10 +61,10 @@
                     <Check class="group-active:opacity-100 opacity-0 absolute top-0" size={20} />
 
                 </button></p>
-            
+
             </section>
         {/if}
-       
+
     </section>
 </main>
 
