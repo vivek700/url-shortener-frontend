@@ -1,4 +1,4 @@
-import type { Actions, PageServerData } from "./$types"
+import type { Actions } from "./$types"
 
 
 export const actions = {
