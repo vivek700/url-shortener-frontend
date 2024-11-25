@@ -38,7 +38,7 @@ jobs:
         uses: denoland/deployctl@v1
         with:
           project: "vivek-url-shorten-51"
-          entrypoint: "mod.ts"
+          entrypoint: "/"
           root: "build"
           
           
