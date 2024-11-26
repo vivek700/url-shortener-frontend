@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Check, Copy } from 'lucide-svelte';
+	import { Check, Copy, LoaderCircle } from 'lucide-svelte';
 	import type { ActionData } from './$types';
 	import { enhance } from '$app/forms';
 	let { form }: { form: ActionData } = $props();
@@ -7,6 +7,8 @@
 	function copyText(text: string) {
 		navigator.clipboard.writeText(text);
 	}
+
+	let isLoading = $state(false);
 </script>
 
 <svelte:head>
@@ -18,28 +20,44 @@
 </svelte:head>
 
 <main>
-	<section class="mx-auto w-11/12 py-20 xl:w-3/6">
-		<h1 class="pb-10 text-center text-2xl text-[#ebc8a4]">URL Shortener</h1>
+	<section class="mx-auto w-11/12 py-14 xl:w-3/6">
+		<h1 class="pb-16 text-center text-2xl text-[#ebc8a4]">URL Shortener</h1>
 		<section class="pb-8">
-			<form method="POST" use:enhance class="flex w-full flex-col gap-y-5">
-				<label>
+			<form
+				method="POST"
+				use:enhance={() => {
+					isLoading = true;
+					return async ({ update }) => {
+						await update();
+						isLoading = false;
+					};
+				}}
+				class="flex w-full flex-col gap-y-7"
+			>
+				<label class="text-lg">
+					Past a long URL here:
 					<input
 						required
-						class="w-full rounded bg-[#343434] px-2 py-3 text-lg outline-none"
-						placeholder="Enter the link..."
+						class="mt-2 w-full rounded bg-[#2b2b2b] px-2 py-3 text-lg outline-none"
+						placeholder="https://www.example.com/long-article-about-technology-and-innovation/detailed-research-report-2024"
 						name="url"
 						type="url"
 					/>
 				</label>
 				<button
 					type="submit"
-					class="block w-3/6 self-center rounded bg-[#CEB08F] py-2 text-lg text-black"
-					>Shorten</button
+					class=" flex w-3/6 items-center justify-center self-center rounded bg-[#CEB08F] py-2 text-lg text-black"
 				>
+					{#if !isLoading}
+						<span> Shorten </span>
+					{:else}
+						<LoaderCircle class="h-7 w-5 animate-spin" />
+					{/if}
+				</button>
 			</form>
 		</section>
 		{#if form?.success}
-			<section class="flex w-full flex-col gap-y-2 rounded bg-[#343434] p-4 text-lg text-[#ddbe9d]">
+			<section class="flex w-full flex-col gap-y-2 rounded bg-[#252529] p-4 text-lg text-[#ddbe9d]">
 				<p>
 					Short url: <a
 						target="_blank"
