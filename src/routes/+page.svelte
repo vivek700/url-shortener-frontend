@@ -35,7 +35,7 @@
 				class="flex w-full flex-col gap-y-7"
 			>
 				<label class="text-lg">
-					Past a long URL here:
+					Paste a long URL here:
 					<input
 						required
 						class="mt-2 w-full rounded bg-[#2b2b2b] px-2 py-3 text-lg outline-none"
