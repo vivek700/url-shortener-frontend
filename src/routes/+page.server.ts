@@ -1,5 +1,5 @@
 import type { Actions } from "./$types"
-
+import { BASEURL } from '$env/static/private'
 
 export const actions = {
     default: async (event) => {
@@ -14,7 +14,7 @@ export const actions = {
 
 const getShortUrl = async (url: FormDataEntryValue | null) => {
 
-    const res = await fetch("https://url-shortener-production-1a13.up.railway.app/api/shorten", {
+    const res = await fetch(`${BASEURL}/api/shorten`, {
         method: "POST",
         headers: {
             'Content-Type': 'application/json'
